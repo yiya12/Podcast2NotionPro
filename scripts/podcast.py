@@ -263,7 +263,7 @@ def get_monthly_wrapped(year, month, id):
 def get_month_from_notion():
     filter = {
         "and": [
-            {"property": "收听时长", "number": {"is_empty": True}},
+            {"property": "收听时长", "number": {"equals": 0}},
             {
                 "property": "日期",
                 "date": {"before": pendulum.now(tz=TZ).replace(day=1).to_date_string()},
@@ -458,7 +458,7 @@ def queryNetSourceParse(task_id, dir_id,title):
         elif status == -1:
             time.sleep(1)
             return queryNetSourceParse(
-                task_id=task_id, dir_id=dir_id
+                task_id=task_id, dir_id=dir_id,title=title
             )
         else:
             print(f"query source data = {data}")
